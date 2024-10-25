@@ -8,10 +8,9 @@ namespace Order
 {
    public class Creator
    {
-      public Booking FactoryMethod(List<string> data)
+      public Booking FactoryMethod(string data)
       {
-         string tmp = data[0] + "_" + data[1] + "_" + data[2];
-         return Booking.Parse(tmp);
+         return Booking.Parse(data);
       }
    }
 }
