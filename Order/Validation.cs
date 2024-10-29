@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Order
 {
@@ -18,13 +15,19 @@ namespace Order
          }
          catch (Exception ex) 
          {
-            Console.WriteLine(ex.Message + " Проверьте вес заказа.");
+            Log.instance.WriteLog(DateTime.Now + " Попытка добавить новый заказ. " + ex.Message + " Проверьте вес заказа.");
             return false;
          }
       }
+
       public bool DateTimeValidation(string data)
       {
          return DateTime.TryParseExact(data, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out _);
+      }
+
+      public bool DateTimeValidation(string data, out DateTime date)
+      {
+         return DateTime.TryParseExact(data, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out date);
       }
    }
 }
